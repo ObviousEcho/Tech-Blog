@@ -8,7 +8,7 @@ router.get("/", async (req, res) => {
     });
 
     const blogs = blogData.map((blog) => blog.get({ plain: true }));
-
+    // res.status(200).json(blogData);
     res.render("homepage", {
       blogs,
     });
