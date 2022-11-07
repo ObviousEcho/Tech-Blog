@@ -9,7 +9,7 @@ router.get("/", async (req, res) => {
     res.status(500).json(err);
   }
 })
-
+// signup a new user
 router.post("/", async (req, res) => {
   try {
     const userData = await User.create(req.body);
@@ -25,6 +25,7 @@ router.post("/", async (req, res) => {
   }
 });
 
+// login in an existing user
 router.post("/login", async (req, res) => {
   try {
     const userData = await User.findOne({ where: { email: req.body.email } });

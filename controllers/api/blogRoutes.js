@@ -1,7 +1,8 @@
 const router = require("express").Router();
 const { Blog, Comment } = require("../../models");
+const withAuth = require ('../../utils/auth');
 
-router.get("/:id", async (req, res) => {
+router.get("/:id", withAuth, async (req, res) => {
   try {
     const blogData = await Blog.findByPk(req.params.id, {
       include: [{ model: Comment }],
@@ -16,7 +17,7 @@ router.get("/:id", async (req, res) => {
   }
 });
 
-router.post("/", async (req, res) => {
+router.post("/", withAuth, async (req, res) => {
   try {
     const blogData = await Blog.create(req.body);
     res.status(200).json(blogData);
@@ -25,7 +26,7 @@ router.post("/", async (req, res) => {
   }
 });
 
-router.delete("/:id", async (req, res) => {
+router.delete("/:id", withAuth, async (req, res) => {
   try {
     const blogData = await Blog.destroy({
       where: {
