@@ -9,4 +9,10 @@
     </div>
     <p>Posted at: {{date}}</p>
   </div>
+  {{#each comments as |comment|}}
+  <div class="container border rounded">
+  <p>{{comment.comment}}</p>
+  <p>{{comment.date}}</p>
+  </div>
+  {{/each}}
 {{/each}}

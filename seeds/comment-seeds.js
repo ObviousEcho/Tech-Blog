@@ -8,6 +8,12 @@ const commentData = [
         date: 2022-11-05
     },
     {
+        comment: "Gotta work...",
+        blog_id: 1,
+        user_id: 2,
+        date: 2022-11-06
+    },
+    {
         comment: "Maybe...",
         blog_id: 2,
         user_id: 2,
