@@ -1,17 +1,21 @@
 const router = require("express").Router();
-const { Blog, Comment } = require("../../models");
-const withAuth = require ('../../utils/auth');
+const { Blog, Comment, User } = require("../../models");
+const withAuth = require("../../utils/auth");
 
 router.get("/:id", withAuth, async (req, res) => {
   try {
     const blogData = await Blog.findByPk(req.params.id, {
-      include: [{ model: Comment }],
+      include: [{ model: Comment }, { model: User }],
     });
     if (!blogData) {
       res.status(400).json({ message: "No location with that id found!" });
     }
     const blog = blogData.get({ plain: true });
-    res.status(200).json(blogData);
+    // console.log(blog);
+    // res.status(200).json(blogData);
+    res.render('blogpost', {
+      ...blog,
+    });
   } catch (err) {
     res.status(500).json(err);
   }

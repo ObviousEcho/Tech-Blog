@@ -1,18 +1,27 @@
-{{#each blogs as |blog|}}
-  <div class="container border rounded m-3">
-    <div class="border-bottom">
-      <h2>{{post_title}}</h2>
-      <h3>Posted by: {{user.name}}</h3>
+<div class="blog-post">
+  {{#each blogs as |blog|}}
+    <div class="container border rounded m-3 bg-secondary">
+      <div class="border-bottom">
+        <h2>{{post_title}}</h2>
+        <h3>Posted by: {{user.name}}</h3>
+      </div>
+      <div class="border-bottom">
+        <p class="post-content">{{contents}}</p>
+      </div>
+      <p>Posted at: {{date}}</p>
+      {{#each comments as |comment|}}
+        <div class="container border rounded m-1 bg-light">
+          <p>{{comment.comment}}</p>
+          <p>{{comment.date}}</p>
+        </div>
+      {{/each}}
+      <button
+        type="button"
+        class="btn btn-primary btn-lg btn-block mb-3 post-button"
+        data-postId="{{id}}"
+      >View Post</button>
     </div>
-    <div class="border-bottom">
-      <p class="post-content">{{contents}}</p>
-    </div>
-    <p>Posted at: {{date}}</p>
-  </div>
-  {{#each comments as |comment|}}
-  <div class="container border rounded">
-  <p>{{comment.comment}}</p>
-  <p>{{comment.date}}</p>
-  </div>
   {{/each}}
-{{/each}}
+</div>
+
+<script src="/js/blogselect.js"></script>

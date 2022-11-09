@@ -5,10 +5,10 @@ router.get("/", async (req, res) => {
   try {
     const userData = await User.findAll();
     res.status(200).json(userData);
-  } catch(err) {
+  } catch (err) {
     res.status(500).json(err);
   }
-})
+});
 // signup a new user
 router.post("/", async (req, res) => {
   try {
@@ -41,10 +41,10 @@ router.post("/login", async (req, res) => {
         .status(400)
         .json({ message: "Incorrect email or password, please try again." });
     }
+
     req.session.save(() => {
       req.session.user_id = userData.isSoftDeleted;
       req.session.logged_in = true;
-
       res.json({ user: userData, message: "You are no logged in!" });
     });
   } catch (err) {
