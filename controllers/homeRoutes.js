@@ -31,13 +31,13 @@ router.get("/login", (req, res) => {
 
 router.get("/dashboard", withAuth, async (req, res) => {
   try {
-    console.log(`Session ID ${req.session.id}`);
+    console.log(`Session ID ${req.session.user_id}`);
     const blogData = await Blog.findAll(
-    //   {
-    //   where: {
-    //     user_id: req.session.id,
-    //   },
-    // }
+      {
+      where: {
+        user_id: req.session.user_id,
+      },
+    }
     );
     
     res.status(200).json(blogData);
@@ -45,5 +45,25 @@ router.get("/dashboard", withAuth, async (req, res) => {
     res.status(400).json(err);
   }
 });
+
+router.get("/blog/:id", withAuth, async (req, res) => {
+  try {
+    const blogData = await Blog.findByPk(req.params.id, {
+      include: [{ model: Comment }, { model: User }],
+    });
+    if (!blogData) {
+      res.status(400).json({ message: "No location with that id found!" });
+    }
+    const blog = blogData.get({ plain: true });
+    console.log(blog);
+    // res.status(200).json(blogData);
+    res.render('blogpost', {
+      ...blog,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 
 module.exports = router;
