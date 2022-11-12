@@ -10,3 +10,7 @@
     text-decoration: none;
     font-size: 100%;
   }
+
+  #dashboard-display {
+    display: none;
+  }

@@ -10,7 +10,7 @@ router.get("/:id", withAuth, async (req, res) => {
     if (!blogData) {
       res.status(400).json({ message: "No location with that id found!" });
     }
-    const blog = blogData.get({ plain: true });
+    // const blog = blogData.get({ plain: true });
     res.status(200).json(blogData);
   } catch (err) {
     res.status(500).json(err);

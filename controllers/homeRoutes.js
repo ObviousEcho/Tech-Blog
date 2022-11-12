@@ -40,9 +40,11 @@ router.get("/dashboard", withAuth, async (req, res) => {
 
     // res.status(200).json(blogData);
     const blogs = blogData.map((blog) => blog.get({ plain: true }));
-
+    const userId = req.session.user_id;
     res.render("dashboard", {
       blogs,
+      userId,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(400).json(err);
@@ -58,12 +60,13 @@ router.get("/blog/:id", withAuth, async (req, res) => {
       res.status(400).json({ message: "No location with that id found!" });
     }
     const blog = blogData.get({ plain: true });
-    const user_id = req.session.user_id;
+    const userId = req.session.user_id;
     console.log(blog);
     // res.status(200).json(blogData);
     res.render("blogpost", {
       ...blog,
-      user_id,
+      userId,
+      logged_in: req.session.logged_in,
     });
   } catch (err) {
     res.status(500).json(err);
