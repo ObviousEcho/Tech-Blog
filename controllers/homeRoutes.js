@@ -1,6 +1,6 @@
 const router = require("express").Router();
 const { Blog, Comment, User } = require("../models");
-const withAuth = require('../utils/auth');
+const withAuth = require("../utils/auth");
 
 router.get("/", async (req, res) => {
   try {
@@ -31,16 +31,19 @@ router.get("/login", (req, res) => {
 
 router.get("/dashboard", withAuth, async (req, res) => {
   try {
-    console.log(`Session ID ${req.session.user_id}`);
-    const blogData = await Blog.findAll(
-      {
+    const blogData = await Blog.findAll({
       where: {
         user_id: req.session.user_id,
       },
-    }
-    );
-    
-    res.status(200).json(blogData);
+      include: [{ model: User }, { model: Comment }],
+    });
+
+    // res.status(200).json(blogData);
+    const blogs = blogData.map((blog) => blog.get({ plain: true }));
+
+    res.render("dashboard", {
+      blogs,
+    });
   } catch (err) {
     res.status(400).json(err);
   }
@@ -55,15 +58,16 @@ router.get("/blog/:id", withAuth, async (req, res) => {
       res.status(400).json({ message: "No location with that id found!" });
     }
     const blog = blogData.get({ plain: true });
+    const user_id = req.session.user_id;
     console.log(blog);
     // res.status(200).json(blogData);
-    res.render('blogpost', {
+    res.render("blogpost", {
       ...blog,
+      user_id,
     });
   } catch (err) {
     res.status(500).json(err);
   }
 });
-
 
 module.exports = router;
