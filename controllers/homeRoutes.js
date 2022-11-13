@@ -51,6 +51,28 @@ router.get("/dashboard", withAuth, async (req, res) => {
   }
 });
 
+router.get("/dashboard/blog/:id", withAuth, async (req, res) => {
+  try {
+    const blogData = await Blog.findByPk(req.params.id, {
+      include: [{ model: Comment }, { model: User }],
+    });
+    if (!blogData) {
+      res.status(400).json({ message: "No location with that id found!" });
+    }
+    const blog = blogData.get({ plain: true });
+    const userId = req.session.user_id;
+    console.log(blog);
+    // res.status(200).json(blogData);
+    res.render("dashblog", {
+      ...blog,
+      userId,
+      logged_in: req.session.logged_in,
+    });
+  } catch (err) {
+    res.status(500).json(err);
+  }
+});
+
 router.get("/blog/:id", withAuth, async (req, res) => {
   try {
     const blogData = await Blog.findByPk(req.params.id, {

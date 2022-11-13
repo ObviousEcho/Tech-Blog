@@ -14,6 +14,12 @@
         <p>{{comment.date}}</p>
       </div>
     {{/each}}
+      <button
+        type="button"
+        class="btn btn-danger btn-lg btn-block mb-3 mt-3 delete-button"
+        data-id="{{id}}"
+      >Delete Post</button>
+  </div>
 </div>
 <div class="container ml-3">
   <h3>Add a comment</h3>
@@ -31,4 +37,4 @@
   </form>
 </div>
 
-<script src="/js/blogpost.js"></script>
+<script src="/js/dashblog.js"></script>
