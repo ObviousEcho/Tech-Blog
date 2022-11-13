@@ -16,25 +16,34 @@
     {{/each}}
       <button
         type="button"
+        class="btn btn-warning btn-lg btn-block mb-3 mt-3 update-button"
+        data-id="{{id}}"
+      >Update Post</button>
+      <button
+        type="button"
         class="btn btn-danger btn-lg btn-block mb-3 mt-3 delete-button"
         data-id="{{id}}"
       >Delete Post</button>
   </div>
 </div>
-<div class="container ml-3">
-  <h3>Add a comment</h3>
-  <form id="comment-text">
-    <div class="form-group">
-      <label for="post-comment">Your comment</label>
-      <input type="text" class="form-control" id="post-comment" />
-    </div>
-    <button
-      type="submit"
-      class="btn btn-primary sub-btn"
-      data-id="{{id}}"
-      data-userId="{{user_id}}"
-    >Submit</button>
-  </form>
-</div>
+
+<div class="container border rounded m-3 bg-secondary update-input" id="dashboard-display">
+    <h2>Update this post</h2>
+    <form class="update-post">
+      <div class="form-group">
+        <label for="post-title">Title</label>
+        <input type="text" class="form-control" id="title-update" />
+        <label for="post-body">Body</label>
+        <textarea
+          class="form-control"
+          name="message"
+          rows="10"
+          cols="60"
+          id="body-update"
+        ></textarea>
+        <button type="submit" class="btn btn-primary mt-2 update-btn" data-id="{{id}}">Submit</button>
+      </div>
+    </form>
+  </div>
 
 <script src="/js/dashblog.js"></script>
