@@ -35,16 +35,9 @@ router.get("/dashboard", withAuth, async (req, res) => {
       },
       include: [{ model: User }, { model: Comment }],
     });
-
-    // const userId = req.session.user_id;
-    // if (!blogData) {
-    //   res.render("dashboard", {
-    //     userId,
-    //     logged_in: req.session.logged_in,
-    //   });
-    // }
-
+    
     const blogs = blogData.map((blog) => blog.get({ plain: true }));
+    const userId = req.session.user_id;
     res.render("dashboard", {
       blogs,
       userId,

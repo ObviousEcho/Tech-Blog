@@ -2,25 +2,31 @@ const { Comment } = require('../models');
 
 const commentData = [
     {
-        comment: "I'm in!",
+        comment: "Node is life changing!",
         blog_id: 1,
         user_id: 1,
         date: 2022-11-05
     },
     {
-        comment: "Gotta work...",
+        comment: "I couldn't agree more, so many npm packages to utilize!",
         blog_id: 1,
         user_id: 2,
         date: 2022-11-06
     },
     {
-        comment: "Maybe...",
+        comment: "Tailwinds is interesting.",
         blog_id: 2,
         user_id: 2,
         date: 2022-11-06
     },
     {
-        comment: "For sure!",
+        comment: "From scratch!",
+        blog_id: 2,
+        user_id: 3,
+        date: 2022-11-08
+    },
+    {
+        comment: "How about oldschool C.",
         blog_id: 3,
         user_id: 3,
         date: 2022-11-07
