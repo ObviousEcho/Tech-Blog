@@ -1,5 +1,8 @@
 # Tech-Blog
 
+![login screenshot](./assets/images/login.png)
+![post screenshot](./assets/images/post.png)
+
 Tech Blog is a CMS-style blog site which allows developers writing about tech, to post their thoughts, and comment on other developer's posts as well.  This full-stack application is built using an Express server and a Mysql database utilizing Sequelize as well as the Handlebars templating engine.  The model view controller paradigm was also followed.
 
 ## Installation
@@ -40,10 +43,13 @@ After the database has been seeded, enter "npm start" or "npm run watch" if you 
 
 This full-stack web appication was a challenging task to build. Several steps were involved, begining with creating a basic Express server, then defining my database models and relationships, as well as creating seed data. Next I transitioned to writing API's and testing them with Insomnia. At this point I had my models and controllers in place, it was time to begin working on my views per MVC architecture.  Login and signup routes were created and protected using Express-Sessions.  Admittedly, I focused more on the backend architecture, as opposed to front-end styling.  Bootstrap components and classes were used to give the site some aesthetic appeal.
 
+![post screenshot](./assets/images/post2.png)
+![post screenshot](./assets/images/post3.png)
+
 Please view my GitHub repo here:
 [Tech-Blog](https://github.com/ObviousEcho/Tech-Blog)
 
 Please view the deployed site on Heroku here:
-[Heroku]()
+[nameless-bayou](https://nameless-bayou-61480.herokuapp.com/)
 
 Thanks!
